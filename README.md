@@ -7,6 +7,8 @@ mgit2 --resolver-url-template='https://github.com/\${ path }.git' bootstrap
 lerna bootstrap
 npm run build
 firefox sample/index.html
+# after lerna bootstrap you probably want everything to be symlinks here, except maybe -dev
+ls -l node_modules/@ckeditor/
 ```
 
 Issue: styles aren't loaded.
