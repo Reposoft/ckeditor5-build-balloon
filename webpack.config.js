@@ -12,6 +12,7 @@ const webpack = require( 'webpack' );
 const { bundler } = require( '@ckeditor/ckeditor5-dev-utils' );
 const { getPostCssConfig } = require( '@ckeditor/ckeditor5-dev-utils' ).styles;
 const BabiliPlugin = require( 'babel-minify-webpack-plugin' );
+const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const buildConfig = require( './build-config' );
 
 module.exports = {
@@ -28,6 +29,7 @@ module.exports = {
 	},
 
 	plugins: [
+		new ExtractTextPlugin( 'styles.css' ),
 		/*new BabiliPlugin( null, {
 			comments: false
 		} ),*/
@@ -45,24 +47,19 @@ module.exports = {
 				use: [ 'raw-loader' ]
 			},
 			{
-				test: /\.css$/,
-				use: [
-					{
-						loader: 'style-loader',
-						options: {
-							singleton: true
-						}
-					},
-					{
-						loader: 'postcss-loader',
-						options: getPostCssConfig( {
-							themeImporter: {
-								themePath: require.resolve( '@ckeditor/ckeditor5-theme-lark' )
-							},
-							minify: true
-						} )
-					},
-				]
+				test: /\.scss$/,
+				use: ExtractTextPlugin.extract( {
+					fallback: 'style-loader',
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								minimize: true
+							}
+						},
+						'sass-loader'
+					]
+				} )
 			}
 		]
 	}
