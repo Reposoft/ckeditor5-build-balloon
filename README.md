@@ -1,3 +1,17 @@
+This fork, using [npm install -g](https://github.com/ckeditor/ckeditor5#development)'d development tools.
+
+```
+curl -sLS -o mgit.json https://github.com/ckeditor/ckeditor5/raw/master/mgit.json
+curl -sLS -o lerna.json https://github.com/ckeditor/ckeditor5/raw/master/lerna.json
+mgit2 --resolver-url-template='https://github.com/\${ path }.git' bootstrap
+lerna bootstrap
+npm run build
+firefox sample/index.html
+```
+
+Issue: styles aren't loaded.
+
+
 CKEditor 5 balloon editor build
 ==============================================
 
