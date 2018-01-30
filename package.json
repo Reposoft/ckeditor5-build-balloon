@@ -51,9 +51,8 @@
     "url": "https://github.com/ckeditor/ckeditor5-build-balloon.git"
   },
   "scripts": {
-    "build": "npm run create-entry-file && npm run build-ckeditor",
+    "build": "./node_modules/.bin/webpack --progress --bail --display=detailed",
     "create-entry-file": "node bin/create-entry-file.js",
-    "build-ckeditor": "./node_modules/.bin/webpack --progress --bail --display=detailed",
     "preversion": "npm run build; if [ -n \"$(git status src/ckeditor.js build/ --porcelain)\" ]; then git add -u src/ckeditor.js build/ && git commit -m 'Internal: Build.'; fi"
   }
 }
