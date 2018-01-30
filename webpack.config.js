@@ -28,9 +28,9 @@ module.exports = {
 	},
 
 	plugins: [
-		new BabiliPlugin( null, {
+		/*new BabiliPlugin( null, {
 			comments: false
-		} ),
+		} ),*/
 		new webpack.BannerPlugin( {
 			banner: bundler.getLicenseBanner(),
 			raw: true
