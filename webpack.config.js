@@ -47,6 +47,20 @@ module.exports = {
 				use: [ 'raw-loader' ]
 			},
 			{
+				test: /\.css$/,
+				use: ExtractTextPlugin.extract( {
+					fallback: 'style-loader',
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								minimize: false
+							}
+						}
+					]
+				} )
+			},
+			{
 				test: /\.scss$/,
 				use: ExtractTextPlugin.extract( {
 					fallback: 'style-loader',
@@ -54,7 +68,7 @@ module.exports = {
 						{
 							loader: 'css-loader',
 							options: {
-								minimize: true
+								minimize: false
 							}
 						},
 						'sass-loader'
